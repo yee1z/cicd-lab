@@ -28,7 +28,9 @@ jobs:
         run: npm run format:check
 
       - name: Run tests with JUnit output
-        run: npx vitest run --reporter=default --reporter=junit --outputFile=./test-results/junit.xml
+        run: |
+          mkdir -p test-results
+          npx vitest run --reporter=default --reporter=junit --outputFile=./test-results/junit.xml
 
       - name: Upload test results artifact
         if: always()
